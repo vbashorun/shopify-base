@@ -1,0 +1,84 @@
+<!doctype html>
+<!--[if IE 8]><html class='no-js lt-ie9' lang='en'> <![endif]-->
+<!--[if IE 9 ]><html class='ie9 no-js'> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class='no-js'> <!--<![endif]-->
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        {% comment %} Titles {% endcomment %}
+        <title>
+        {{shop.name}}&nbsp;&mdash;&nbsp;
+        {% if template == 'collection' %}
+        {{ collection.title }}
+        {% elsif template == 'product' %}
+        {{ product.title }}
+        {% elsif template == 'blog' %}
+        {{ blog.title }}
+        {% elsif template == 'article' %}
+        {{ article.title }}
+        {% elsif template == 'page' %}
+        {{ page.title }}
+        {% elsif template == '404' %}
+        Page Not Found
+        {% else %}
+        {% endif %}
+        </title>
+        {% comment %} Descriptions {% endcomment %}
+        {% if template == 'collection' %}
+        <meta name='description' content='{{ collection.description | strip_html | truncate: 150 }}' />
+        {% if template == 'product' %}
+        <meta name='description' content='{{ product.description | strip_html | truncate: 150 }}' />
+        {% elsif template == 'article' %}
+        <meta name='description' content='{{ article.content | strip_html | truncate: 150 }}' />
+        {% else %}
+        <meta name='description' content='{{ settings.meta_description }}'>
+        {% endif %}
+        {% comment %} Keywords {% endcomment %}
+        {% if template == 'product' %}
+        <meta name='keywords' content='{% for tag in product.tags %}{{tag}}, {% endfor %}' />
+        {% else %}
+        <meta name='keywords' content='{{ settings.meta_keywords }}'>
+        {% endif %}
+        {% comment %} Canonical {% endcomment %}
+        <link rel='canonical' href='{{ canonical_url }}' />
+        {% comment %} Open Graph {% endcomment %}
+        {% if template == 'product' %}
+        <meta property='og:title' content='{{ product.title }}' />
+        <meta property='og:type' content='website' />
+        <meta property='og:url' content='{{ product.url }}' />
+        <meta property='og:image' content='{{ product.featured_image | product_img_url: 'medium' }}' />
+        <meta property='og:site_name' content='{{ product.title }}' />
+        <meta property='og:description' content='{{ product.description }}' />
+        {% else %}
+        <meta property='og:title' content='{{ shop.name }}' />
+        <meta property='og:type' content='website' />
+        <meta property='og:url' content='{{ shop.url }}' />
+        <meta property='og:image' content='{{ 'logo.png | asset_url }}' />
+        <meta property='og:site_name' content='{{ shop.name }}' />
+        <meta property='og:description' content='{{ shop.description }}' />
+        {% endif %}
+        {% comment %} Site Map {% endcomment %}
+        <link rel='sitemap' type='application/xml' title='Sitemap' href='/sitemap.xml' />
+        {% comment %} Stylesheets {% endcomment %}
+        {{ 'style.css' | asset_url | stylesheet_tag }}
+        {% comment %} Favicons {% endcomment %}
+        <link rel='apple-touch-icon-precomposed' sizes='114x114' href='assets/apple-touch-icon-114x114-precomposed.png'>
+        <link rel='apple-touch-icon-precomposed' sizes='72x72' href='assets/apple-touch-icon-72x72-precomposed.png'>
+        <link rel='apple-touch-icon-precomposed' href='assets/apple-touch-icon-precomposed.png'>
+        <link rel='shortcut icon' href='assets/favicon.ico' />
+        <!--[if lt IE 9]>
+        <script src='//html5shiv.googlecode.com/svn/trunk/html5.js'></script>
+        <script>window.html5 || document.write('<script src='js/html5shiv.js'><\/script>')</script>
+        <![endif]-->
+        {{ content_for_header }}
+    </head>
+    <body>
+        {% comment %} Chromeframe {% endcomment %}
+        <!--[if lt IE 7]>
+        <p class='chromeframe'>You are using an <strong>outdated</strong> browser. Please <a href='http://browsehappy.com/'>upgrade your browser</a> or <a href='http://www.google.com/chromeframe/?redirect=true'>activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        {% comment %} Javascript {% endcomment %}
+        {{ 'shop.js'  | asset_url | script_tag }}
+    </body>
+</html>
