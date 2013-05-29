@@ -7,20 +7,20 @@
         <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         {% comment %} Titles {% endcomment %}
-        <title>
-        {{shop.name}}
         {% if template == 'collection' %}
-        &nbsp;&ndash;&nbsp;{{ collection.title }}
+        <title>{{ collection.title }} &ndash; {{shop.name}}</title>
         {% elsif template == 'product' %}
-        &nbsp;&ndash;&nbsp;{{ product.title }}
+        <title>{{ product.title }} &ndash; {{shop.name}}</title>
         {% elsif template == 'blog' %}
-        &nbsp;&ndash;&nbsp;{{ blog.title }}
+        <title>{{ blog.title }} &ndash; {{shop.name}}</title>
         {% elsif template == 'article' %}
-        &nbsp;&ndash;&nbsp;{{ article.title }}
+        <title>{{ article.title }} &ndash; {{shop.name}}</title>
         {% elsif template == 'page' %}
-        &nbsp;&ndash;&nbsp;{{ page.title }}
+        <title>{{ page.title }} &ndash; {{shop.name}}</title>
         {% elsif template == '404' %}
-        &nbsp;&ndash;&nbsp;Page Not Found
+        <title>Page Not Found &ndash; {{shop.name}}</title>
+        {% else %}
+        <title>{{shop.name}} &ndash; {{ shop.description }}</title>
         {% endif %}
         </title>
         {% comment %} Descriptions {% endcomment %}
