@@ -8,19 +8,19 @@
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         {% comment %} Titles {% endcomment %}
         <title>
-        {{shop.name}}&nbsp;&mdash;&nbsp;
+        {{shop.name}}
         {% if template == 'collection' %}
-        {{ collection.title }}
+        &nbsp;&ndash;&nbsp;{{ collection.title }}
         {% elsif template == 'product' %}
-        {{ product.title }}
+        &nbsp;&ndash;&nbsp;{{ product.title }}
         {% elsif template == 'blog' %}
-        {{ blog.title }}
+        &nbsp;&ndash;&nbsp;{{ blog.title }}
         {% elsif template == 'article' %}
-        {{ article.title }}
+        &nbsp;&ndash;&nbsp;{{ article.title }}
         {% elsif template == 'page' %}
-        {{ page.title }}
+        &nbsp;&ndash;&nbsp;{{ page.title }}
         {% elsif template == '404' %}
-        Page Not Found
+        &nbsp;&ndash;&nbsp;Page Not Found
         {% endif %}
         </title>
         {% comment %} Descriptions {% endcomment %}
