@@ -26,7 +26,7 @@
         {% comment %} Descriptions {% endcomment %}
         {% if template == 'collection' %}
         <meta name='description' content='{{ collection.description | strip_html | truncate: 150 }}' />
-        {% if template == 'product' %}
+        {% elsif template == 'product' %}
         <meta name='description' content='{{ product.description | strip_html | truncate: 150 }}' />
         {% elsif template == 'article' %}
         <meta name='description' content='{{ article.content | strip_html | truncate: 150 }}' />
