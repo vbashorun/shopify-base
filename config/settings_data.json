@@ -1,9 +1,8 @@
 {
-  "current": "Slate",
+  "current": "Default",
   "presets": {
-    "Slate": {
-      "use_logo": false,
-      "customer_layout": "theme"
+    "Default": {
+      "image_logo": false
     }
   }
 }
