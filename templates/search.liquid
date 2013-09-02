@@ -4,18 +4,29 @@
 </form>
 
 {% if search.performed %}
-{% paginate search.results by 10 %}
-{% if search.results_count == 0 %}
-<p>Your search for "{{ search.terms }}" did not yield any results.</p>
-{% else %}
-<ol>
+
+    {% paginate search.results by 10 %}
+
+    {% if search.results_count == 0 %}
+    <p>Your search for "{{ search.terms }}" did not yield any results.</p>
+    {% else %}
+
     {% for item in search.results %}
-    <li>{{ item.title | link_to: item.url }}</li>
+
+    <h3>{{ item.title | link_to: item.url }}</h3>
+
+    {% if item.featured_image %}
+    {{ item.featured_image.src | product_img_url: 'small' | img_tag: item.featured_image.alt }}
+    {% endif %}
+
+    {{ item.content | strip_html | truncatewords: 40 | highlight: search.terms }}
     {% endfor %}
-</ol>
-{% endif %}
-{% if paginate.pages > 1 %}
-{{ paginate | default_pagination }}
-{% endif %}
-{% endpaginate %}
+    {% endif %}
+
+    {% if paginate.pages > 1 %}
+    {{ paginate | default_pagination }}
+    {% endif %}
+
+    {% endpaginate %}
+
 {% endif %}
