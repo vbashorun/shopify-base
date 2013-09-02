@@ -2,7 +2,9 @@
 {{ page.content }}
 {% assign collection = collections.frontpage %}
 {% for product in collection.products %}
-<h2><a href="{{ product.url }}">{{ product.title }}</a></h2>
+<h2>
+    <a href="{{ product.url }}">{{ product.title }}</a>
+</h2>
 {{ product.description }}
 <img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.title | escape }}" />
 {% else %}

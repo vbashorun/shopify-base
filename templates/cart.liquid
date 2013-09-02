@@ -1,33 +1,78 @@
+<h2>Shopping Cart</h2>
+
 {% if cart.item_count > 0 %}
+
 <form action="/cart" method="post" id="cart" class="cart">
+
     <table>
-        <tr>
-            <th class="item desc"></th>
-            <th class="item price">Price</th>
-            <th class="item qty">Quantity</th>
-            <th class="item remove">Delete</th>
-            <th class="item total">Total</th>
-        </tr>
+
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>&nbsp;</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+
         {% for item in cart.items %}
-        <tr id="cart-item-{{item.variant.id}}" class="cart-item">
-            <td class="item desc"><a href="/collections/{{ item.product.collections.first.title | downcase }}#{{ item.product.handle }}">{{ item.title }}</a></td>
-            <td class="item price">{{ item.price | money }}</td>
-            <td class="item qty"><input type="text" size="4" pattern="[0-9]*" name="updates[{{item.variant.id}}]" id="quantity-{{ item.variant.id }}" class="quantity" value="{{ item.quantity }}" min="1" onfocus="this.select();"/></td>
-            <td class="item remove"><a href="/cart/change/{{item.variant.id}}?quantity=0">Remove</a></td>
-            <td class="item price">{{ item.line_price | money }}</td>
+
+        <tr>
+
+            <td>
+                <a href="/collections/{{ item.product.collections.first.title | downcase }}#{{ item.product.handle }}">{{ item.title }}</a>
+            </td>
+
+            <td>
+                {{ item.price | money }}
+            </td>
+
+            <td>
+                <input type="text" size="4" pattern="[0-9]*" name="updates[{{item.variant.id}}]" id="quantity-{{ item.variant.id }}" value="{{ item.quantity }}" min="1" onfocus="this.select();"/>
+            </td>
+
+            <td>
+                <a href="/cart/change/{{item.variant.id}}?quantity=0">Remove</a>
+            </td>
+
+            <td>
+                {{ item.line_price | money }}
+            </td>
+
         </tr>
+
         {% endfor %}
-        <tr class="subtotal">
-            <td colspan="5">Total: <strong>{{ cart.total_price | money }}</strong></td>
+
+        <tr>
+            <td colspan="5">
+                Total: <em>{{ cart.total_price | money }}</em>
+            </td>
         </tr>
-        <tr class="actions">
+
+        <tr>
             <td colspan="5">
                 <input class="button" type="submit" id="update-cart" name="update" value="Update"  />
                 <input class="button" type="submit" name="checkout" value="Checkout" />
             </td>
         </tr>
+
+        <tr>
+            <td colspan="5">
+                Special instructions for seller:
+                <textarea name="note">{{ cart.note }}</textarea>
+            </td>
+        </tr>
+
+
     </table>
+
 </form>
+
 {% else %}
-<p>It appears that your cart is currently empty!</p>
+
+    <h2>It appears that your cart is currently empty!</h2>
+    <p>You can continue browsing <a href="/collections/all">here</a>.</p>
+
 {% endif %}
