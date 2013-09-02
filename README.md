@@ -5,7 +5,6 @@ A really sparse starting point for **Shopify theme development**. The code and g
 Always try and keep liquid `output` and `tag`, as close to Shopify's own guidelines as possible. Make use of `filters`.
 
 Use liquid `{% comment %}` where possible as this won't be rendered in the HTML.
-''
 Also make use of your `settings.html` file. Add in general wording, theme styles, etc.
 
 Zepto.js with fallback to jQuery is included.
