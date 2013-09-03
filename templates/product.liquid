@@ -1,5 +1,17 @@
 <h2>{{ product.title }}</h2>
+
+{% comment %} Featured Image {% endcomment %}
+<img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" />
+
+{% comment %} Thumb Images {% endcomment %}
+{% if product.images.size > 1 %}
+{% for image in product.images offset:1 %}
+<img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}" />
+{% endfor %}
+{% endif %}
+
 {{ product.description }}
+
 <form action="/cart/add" method="post" enctype="multipart/form-data">
     <select name="id">
         {% for variant in product.variants %}
