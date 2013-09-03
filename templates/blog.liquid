@@ -1,5 +1,14 @@
-<ul>
-    {% for article in blog.articles %}
-    <li><a href="{{ article.url }}">{{ article.title }}</a></li>
-    {% endfor %}
-</ul>
+<h2>{{ blog.title }}</h2>
+
+{% for article in blog.articles %}
+
+<h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+<time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %d, %Y' }}</time>
+
+{% if article.excerpt.size > 0 %}
+    {{ article.excerpt }}
+{% else %}
+    <p>{{ article.content | strip_html | truncatewords: 100 }}</p>
+{% endif %}
+
+{% endfor %}
