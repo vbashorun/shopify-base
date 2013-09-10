@@ -13,6 +13,7 @@
 {{ product.description }}
 
 <form action="/cart/add" method="post" enctype="multipart/form-data">
+    {% if product.variants.size > 1 %}
     <select name="id">
         {% for variant in product.variants %}
         {% if variant.available == true %}
@@ -22,5 +23,8 @@
         {% endif %}
         {% endfor %}
     </select>
+    {% else %}
+    <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+    {% endif %}
     <input type="submit" name="add" id="add" value="Add to Cart" class="button">
 </form>
