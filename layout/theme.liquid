@@ -54,11 +54,10 @@
         {% comment %} Stylesheets {% endcomment %}
         {{ 'store.css' | asset_url | stylesheet_tag }}
         {% comment %} Favicons {% endcomment %}
-        <link rel='apple-touch-icon-precomposed' sizes='114x114' href='assets/apple-touch-icon-114x114-precomposed.png'>
-        <link rel='apple-touch-icon-precomposed' sizes='72x72' href='assets/apple-touch-icon-72x72-precomposed.png'>
-        <link rel='apple-touch-icon-precomposed' href='assets/apple-touch-icon-precomposed.png'>
-        <link rel='shortcut icon' href='assets/favicon.ico' />
-
+        <link rel='apple-touch-icon-precomposed' sizes='114x114' href='{{ 'apple-touch-icon-114x114-precomposed.png' | asset_url }}'>
+        <link rel='apple-touch-icon-precomposed' sizes='72x72' href='{{ 'apple-touch-icon-72x72-precomposed.png' | asset_url }}'>
+        <link rel='apple-touch-icon-precomposed' href='{{ 'apple-touch-icon-precomposed.png' | asset_url }}'>
+        <link rel='shortcut icon' href='{{ 'favicon.ico' | asset_url }}' />
         {{ content_for_header }}
 
         <!--[if lt IE 9]>
