@@ -22,7 +22,13 @@
         <tr>
 
             <td>
-                <a href="/collections/{{ item.product.collections.first.title | downcase }}#{{ item.product.handle }}">{{ item.title }}</a>
+                <a href="{{ item.product.url }}">
+                    <img src="{{ item.product.featured_image | product_img_url: 'thumb' }}" alt="{{ item.title | escape }}" />
+                </a>
+            </td>
+
+            <td>
+                <a href="{{ item.product.url }}">{{ item.title }}</a>
             </td>
 
             <td>
