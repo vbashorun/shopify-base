@@ -114,10 +114,10 @@
             {% comment %} Basic Links {% endcomment %}
             {% if linklists.footer.links.size > 0 %}
             <ul>
-                {% for link in linklists.footer.links %}
                 <li>
                     <h5>{{ linklist.title }}</h5>
                 </li>
+                {% for link in linklists.footer.links %}
                 <li>
                     <a href="{{ link.url }}" title="{{ link.title }}" {% if link.active %}class="active"{% endif %}>{{ link.title }}</a>
                 </li>
